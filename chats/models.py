@@ -6,12 +6,9 @@ class ChatSession(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     created = models.DateTimeField(auto_now_add=True)
 
-    @property
-    def messages(self):
-        return self.messages.all()
-
     def __str__(self):
-        return str(self.id)
+        return  self.messages.first().__str__() if self.messages else str(self.id)
+
 
 
 class Message(models.Model):
@@ -22,4 +19,4 @@ class Message(models.Model):
 
     def __str__(self):
         preview = (self.text[:30] + '...') if len(self.text) > 30 else self.text
-        return f"{self.sender.capitalize()} @ {self.created.strftime('%Y-%m-%d %H:%M:%S')}:{preview}"
+        return preview.capitalize()

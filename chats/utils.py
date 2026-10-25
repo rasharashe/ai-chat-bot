@@ -8,15 +8,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-# OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
-OPENROUTER_API_KEY = os.getenv('OPENROUTER_API_KEY')
 
-# llm = ChatOpenAI(model='gpt-4o-mini', openai_api_key=OPENAI_API_KEY)
-llm = ChatOpenAI(model='gpt-4o-mini', openai_api_key=OPENROUTER_API_KEY, base_url="https://openrouter.ai/api/v1")
-# llm = OpenAI(
-#   base_url="https://openrouter.ai/api/v1",
-#   api_key=OPENROUTER_API_KEY,
-# )
+API_KEY = os.getenv('API_KEY')
+API_BASE_URL = os.getenv('API_BASE_URL')
+AI_MODEL = os.getenv('AI_MODEL')
+
+
+llm = ChatOpenAI(model=AI_MODEL, openai_api_key=API_KEY, base_url=API_BASE_URL)
 
 system_prompt = SystemMessage(content="You are a helpful assistant.")
 

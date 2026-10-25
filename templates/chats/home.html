@@ -5,4 +5,11 @@
   <h1 class="mb-4">Welcome to the Chat</h1>
   <a href="{% url 'chats:new_chat' %}" class="btn btn-primary btn-lg">Start New Chat</a>
 </div>
+<div class="container mt-5">
+  <ul class="list-group">
+    {% for chat in chats %}
+    <a href="{% url 'chats:chat' chat.id %}" class="mt-2"> <li class="list-group-item">{{ forloop.counter }}. {{chat}}</li> </a>
+    {% endfor %}
+  </ul>
+</div>
 {% endblock %}

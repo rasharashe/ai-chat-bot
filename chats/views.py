@@ -6,7 +6,8 @@ from .utils import generate_response
 
 
 def home(request):
-    return render(request, 'chats/home.html')
+    chat_history = ChatSession.objects.filter(messages__isnull=False).distinct().order_by('-id')[:5]
+    return render(request, 'chats/home.html', {'chats': chat_history})
 
 
 def new_chat(request):
